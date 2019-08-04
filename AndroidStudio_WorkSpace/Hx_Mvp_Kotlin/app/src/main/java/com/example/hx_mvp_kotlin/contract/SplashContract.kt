@@ -8,7 +8,7 @@ package com.example.hx_mvp_kotlin.contract
 interface  SplashContract{
 
     interface Presenter :BasePresenter{
-
+        fun checkLoginStatus()
     }
 
     interface View{
