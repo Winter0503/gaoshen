@@ -33,7 +33,7 @@ class SplashActivity : BaseActivity(),SplashContract.View{
         handler.postDelayed({
             startActivity<LoginActivity>()
             finish()
-        }, DELAY);
+        }, DELAY)
     }
 
     override fun onLoggedIn() {
