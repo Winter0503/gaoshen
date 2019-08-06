@@ -2,6 +2,7 @@ package com.example.hx_mvp_kotlin
 
 import android.widget.Toast
 import com.example.hx_mvp_kotlin.contract.LoginContract
+import com.example.hx_mvp_kotlin.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -13,6 +14,21 @@ import org.jetbrains.anko.toast
  */
 class LoginActivity:BaseActivity(),LoginContract.View{
 
+    val persenter =LoginPresenter(this)
+    override fun init() {
+        super.init()
+        login.setOnClickListener { login() }
+        password.setOnEditorActionListener{ p0,p1,p2->
+            login()
+            true
+        }
+    }
+
+    fun login(){
+        val name = userName.text.trim().toString()
+        val pwd =password.text.trim().toString()
+        persenter.login(name,pwd)
+    }
     override fun getLayoutResId(): Int =R.layout.activity_login
 
     override fun onUserNameError() {
