@@ -25,6 +25,8 @@ class LoginActivity:BaseActivity(),LoginContract.View{
     }
 
     fun login(){
+        //隐藏软键盘
+        hideSoftKeyboar()
         val name = userName.text.trim().toString()
         val pwd =password.text.trim().toString()
         persenter.login(name,pwd)
@@ -53,6 +55,9 @@ class LoginActivity:BaseActivity(),LoginContract.View{
 
         //退出LoginActivity
         finish()
+
+        //提示用户
+        toast(R.string.login_success)
     }
 
     override fun onLogedInFailed() {
