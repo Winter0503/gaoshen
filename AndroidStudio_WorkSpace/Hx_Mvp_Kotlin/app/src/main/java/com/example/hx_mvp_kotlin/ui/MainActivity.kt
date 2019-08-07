@@ -1,7 +1,8 @@
-package com.example.hx_mvp_kotlin
+package com.example.hx_mvp_kotlin.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hx_mvp_kotlin.R
 
 class MainActivity : AppCompatActivity() {
 

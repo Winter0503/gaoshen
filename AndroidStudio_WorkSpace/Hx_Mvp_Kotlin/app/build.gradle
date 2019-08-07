@@ -13,6 +13,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            // 设置支持的 SO 库构架，注意这里要根据你的实际情况来设置
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
+        }
+        useLibrary 'org.apache.http.legacy'
     }
     buildTypes {
         release {
@@ -39,6 +44,6 @@ dependencies {
     //Anko sqlite库
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'cn.bmob.android:bmob-sdk:3.7.3'
-    implementation 'cn.bmob.android:bmob-im:2.1.4@aar'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.5'
+//    implementation 'cn.bmob.android:bmob-im:2.1.4@aar'
 }

@@ -1,14 +1,9 @@
 package com.example.hx_mvp_kotlin.presenter
 
-import com.example.hx_mvp_kotlin.contract.BasePresenter
 import com.example.hx_mvp_kotlin.contract.LoginContract
 import com.example.hx_mvp_kotlin.extentions.isValidPassWord
 import com.example.hx_mvp_kotlin.extentions.isValidUserName
 import com.hyphenate.chat.EMClient
-import com.hyphenate.EMCallBack
-import android.R.attr.password
-import android.support.v4.content.ContextCompat.startActivity
-import com.example.hx_mvp_kotlin.MainActivity
 import com.example.hx_mvp_kotlin.adapter.EMCallBackAdapter
 
 

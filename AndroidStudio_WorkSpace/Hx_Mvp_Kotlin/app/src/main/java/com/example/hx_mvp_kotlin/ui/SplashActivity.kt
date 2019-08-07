@@ -1,6 +1,7 @@
-package com.example.hx_mvp_kotlin
+package com.example.hx_mvp_kotlin.ui
 
 import android.os.Handler
+import com.example.hx_mvp_kotlin.R
 import com.example.hx_mvp_kotlin.contract.SplashContract
 import com.example.hx_mvp_kotlin.presenter.SplashPresenter
 import org.jetbrains.anko.startActivity
@@ -26,7 +27,7 @@ class SplashActivity : BaseActivity(),SplashContract.View{
         presenter.checkLoginStatus()
     }
 
-    override fun getLayoutResId(): Int =R.layout.activity_splash
+    override fun getLayoutResId(): Int = R.layout.activity_splash
 
     //延时2秒，跳转页面
     override fun onNotLoggedIn() {

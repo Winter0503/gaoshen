@@ -1,14 +1,13 @@
-package com.example.hx_mvp_kotlin
+package com.example.hx_mvp_kotlin.ui
 
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
-import android.widget.Toast
+import com.example.hx_mvp_kotlin.R
 import com.example.hx_mvp_kotlin.contract.LoginContract
 import com.example.hx_mvp_kotlin.presenter.LoginPresenter
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import java.util.jar.Manifest
 
 
 /**
@@ -16,12 +15,12 @@ import java.util.jar.Manifest
  * Blog : https://mp.csdn.net/
  * escription :
  */
-class LoginActivity:BaseActivity(),LoginContract.View{
+class LoginActivity: BaseActivity(),LoginContract.View{
 
     val persenter =LoginPresenter(this)
 
     //设置布局
-    override fun getLayoutResId(): Int =R.layout.activity_login
+    override fun getLayoutResId(): Int = R.layout.activity_login
 
     //初始化
     override fun init() {

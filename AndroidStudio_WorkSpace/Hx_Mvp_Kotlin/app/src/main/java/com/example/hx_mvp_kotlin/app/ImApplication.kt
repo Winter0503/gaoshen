@@ -1,6 +1,7 @@
 package com.example.hx_mvp_kotlin.app
 
 import android.app.Application
+import cn.bmob.v3.Bmob
 import com.example.hx_mvp_kotlin.BuildConfig
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMOptions
@@ -25,5 +26,7 @@ class ImApplication : Application() {
         EMClient.getInstance().init(applicationContext, options)
 //在做打包混淆时，关闭debug模式，避免消耗不必要的资源
         EMClient.getInstance().setDebugMode(BuildConfig.DEBUG)
+
+        Bmob.initialize(this,"c2a928ba23a54b2c92b966f646f23ce6")
     }
 }

@@ -1,4 +1,4 @@
-package com.example.hx_mvp_kotlin
+package com.example.hx_mvp_kotlin.ui
 
 import android.app.ProgressDialog
 import android.inputmethodservice.InputMethodService
