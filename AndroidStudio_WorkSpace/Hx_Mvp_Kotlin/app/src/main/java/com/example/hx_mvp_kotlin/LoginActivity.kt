@@ -19,15 +19,28 @@ import java.util.jar.Manifest
 class LoginActivity:BaseActivity(),LoginContract.View{
 
     val persenter =LoginPresenter(this)
+
+    //设置布局
+    override fun getLayoutResId(): Int =R.layout.activity_login
+
+    //初始化
     override fun init() {
         super.init()
+
+        //登录按钮点击事件
         login.setOnClickListener { login() }
+
+        //密码输入框事件
         password.setOnEditorActionListener{ p0,p1,p2->
             login()
             true
         }
+
+        newUser.setOnClickListener{ startActivity<RegisterActivity>() }
+
     }
 
+    //登录
     fun login(){
         //隐藏软键盘
         hideSoftKeyboar()
@@ -41,6 +54,7 @@ class LoginActivity:BaseActivity(),LoginContract.View{
 
     }
 
+    //申请权限
     private fun registePermission() {
         val premissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         ActivityCompat.requestPermissions(this,premissions,0)
@@ -51,21 +65,24 @@ class LoginActivity:BaseActivity(),LoginContract.View{
         val result = ActivityCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         return result==PackageManager.PERMISSION_GRANTED
     }
-    override fun getLayoutResId(): Int =R.layout.activity_login
 
+    //用户名校验失败回调的方法
     override fun onUserNameError() {
         userName.error=getString(R.string.user_name_error)
     }
 
+    //密码校验失败的方法
     override fun onPasswordError() {
         password.error=getString(R.string.password_error)
     }
 
+    //正在登录接口回调的方法
     override fun onStartLogin() {
          //弹出一个进度条
         showProgress(getString(R.string.logging))
     }
 
+    //登录成功接口回调的方法
     override fun onLogedInSuccess() {
         //隐藏进度条
         dismissProgress()
@@ -80,6 +97,7 @@ class LoginActivity:BaseActivity(),LoginContract.View{
         toast(R.string.login_success)
     }
 
+    //登录失败接口回调的方法
     override fun onLogedInFailed() {
         //隐藏进度条
         dismissProgress()
@@ -89,7 +107,6 @@ class LoginActivity:BaseActivity(),LoginContract.View{
     }
 
     //用户选择是否开启权限的回调方法
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
             //用户开启了需要的权限，开始登录验证

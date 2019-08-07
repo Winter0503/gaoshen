@@ -38,6 +38,7 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
         <!-- 设置环信应用的AppKey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="1104190506055937#im" />
         <!-- 声明SDK所需的service SDK核心功能-->
