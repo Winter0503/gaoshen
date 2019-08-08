@@ -4,8 +4,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.example.hx_mvp_kotlin.R
 import com.example.hx_mvp_kotlin.adapter.ContactListAdapter
+import com.example.hx_mvp_kotlin.adapter.EMContactListenerAdapter
 import com.example.hx_mvp_kotlin.contract.ContactContract
 import com.example.hx_mvp_kotlin.presenter.ContactPresenter
+import com.hyphenate.EMContactListener
+import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
@@ -36,6 +39,16 @@ class ContactFragment: BaseFragment(),ContactContract.view{
             adapter= ContactListAdapter(context,presenter.contactListItems)
         }
 
+        EMClient.getInstance().contactManager().setContactListener(object : EMContactListenerAdapter() {
+            override fun onContactDeleted(p0: String?) {
+                super.onContactDeleted(p0)
+                presenter.loadContact()
+            }
+            override fun onContactAdded(p0: String?) {
+                super.onContactAdded(p0)
+                presenter.loadContact()
+            }
+        })
         presenter.loadContact()
     }
 

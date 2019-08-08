@@ -17,6 +17,8 @@ class ContactPresenter(val view : ContactContract.view) : ContactContract.presen
     val contactListItems = mutableListOf<ContactListItem >()
     override fun loadContact() {
         doAsync {
+            //清空集合
+            contactListItems.clear()
             try {
                 val usernames = EMClient.getInstance().contactManager().allContactsFromServer
                 usernames.sortBy{ it[0] }
@@ -26,7 +28,6 @@ class ContactPresenter(val view : ContactContract.view) : ContactContract.presen
                     val contactListItem=ContactListItem(s,s[0].toUpperCase(),showFirstLetter)
                     contactListItems.add(contactListItem)
                 }
-
                 uiThread { view.onLoadContactsSuccess() }
             }catch (e: HyphenateException){
                 uiThread { view.onLoadContactsFiled() }

@@ -25,7 +25,7 @@
     <string name="send_add_friend_failed">发送好友申请失败</string>
     <string name="send_add_friend_success">发送好友申请成功</string>
     <string name="delete_friend_title">删除好友</string>
-    <string name="delete_friend_message">是否与%s友尽？</string>
+    <string name="delete_friend_message">是否删除%s？</string>
     <string name="confirm">确认</string>
     <string name="delete_friend_failed">删除好友失败</string>
     <string name="delete_friend_success">删除好友成功</string>
