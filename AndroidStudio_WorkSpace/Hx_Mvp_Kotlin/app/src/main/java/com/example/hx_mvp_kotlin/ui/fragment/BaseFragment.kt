@@ -1,4 +1,4 @@
-package com.example.hx_mvp_kotlin.ui
+package com.example.hx_mvp_kotlin.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

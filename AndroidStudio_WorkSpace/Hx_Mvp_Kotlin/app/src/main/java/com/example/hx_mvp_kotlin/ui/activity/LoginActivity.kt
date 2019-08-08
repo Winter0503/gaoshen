@@ -1,4 +1,4 @@
-package com.example.hx_mvp_kotlin.ui
+package com.example.hx_mvp_kotlin.ui.activity
 
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat

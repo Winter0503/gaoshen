@@ -1,4 +1,4 @@
-package com.example.hx_mvp_kotlin.ui
+package com.example.hx_mvp_kotlin.ui.activity
 
 import com.example.hx_mvp_kotlin.R
 import com.example.hx_mvp_kotlin.contract.RegisterContract
