@@ -7,11 +7,12 @@ import com.example.hx_mvp_kotlin.adapter.ContactListAdapter
 import com.example.hx_mvp_kotlin.adapter.EMContactListenerAdapter
 import com.example.hx_mvp_kotlin.contract.ContactContract
 import com.example.hx_mvp_kotlin.presenter.ContactPresenter
+import com.example.hx_mvp_kotlin.ui.activity.AddFriendActivity
 import com.example.hx_mvp_kotlin.widght.SlideBar
-import com.hyphenate.EMContactListener
 import com.hyphenate.chat.EMClient
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.header.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 /**
@@ -28,7 +29,9 @@ class ContactFragment: BaseFragment(),ContactContract.view{
         super.init()
         headerTitle.text=getString(R.string.contact)
         add.visibility= View.VISIBLE
-
+        add.setOnClickListener{
+            context!!.startActivity<AddFriendActivity>()
+        }
         swipeRefreshLayout.apply {
             setColorSchemeResources(R.color.qq_blue)
             isRefreshing=true
@@ -42,6 +45,10 @@ class ContactFragment: BaseFragment(),ContactContract.view{
         }
 
         EMClient.getInstance().contactManager().setContactListener(object : EMContactListenerAdapter() {
+            override fun onFriendRequestDeclined(p0: String?) {
+                super.onFriendRequestDeclined(p0)
+                presenter.loadContact()
+            }
             override fun onContactDeleted(p0: String?) {
                 super.onContactDeleted(p0)
                 presenter.loadContact()

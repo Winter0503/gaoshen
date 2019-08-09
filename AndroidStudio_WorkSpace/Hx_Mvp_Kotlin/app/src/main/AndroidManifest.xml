@@ -40,6 +40,7 @@
         <activity android:name=".ui.activity.LoginActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
         <activity android:name=".ui.activity.ChatActivity"/>
+        <activity android:name=".ui.activity.AddFriendActivity"/>
         <!-- 设置环信应用的AppKey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="1104190506055937#month" />
         <!-- 声明SDK所需的service SDK核心功能-->

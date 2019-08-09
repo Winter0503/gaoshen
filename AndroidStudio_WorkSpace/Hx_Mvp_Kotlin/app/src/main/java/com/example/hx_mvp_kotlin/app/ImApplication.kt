@@ -1,6 +1,7 @@
 package com.example.hx_mvp_kotlin.app
 
 import android.app.Application
+import android.provider.CalendarContract
 import cn.bmob.v3.Bmob
 import com.example.hx_mvp_kotlin.BuildConfig
 import com.hyphenate.chat.EMClient
@@ -12,9 +13,15 @@ import com.hyphenate.chat.EMOptions
  * escription :
  */
 class ImApplication : Application() {
+
+    companion object{
+        lateinit var instances: ImApplication
+    }
+
     override fun onCreate() {
         super.onCreate()
 
+        instances=this
         val options =EMOptions()
 // 默认添加好友时，是不需要验证的，改成需要验证
         options.setAcceptInvitationAlways(false)

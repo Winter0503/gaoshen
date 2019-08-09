@@ -31,7 +31,7 @@ class ContactListAdapter(val context: Context, val contactListItems: MutableList
         contactListItemView.bindView(contactListItems[p1])
         val userName = contactListItems[p1].userName
         contactListItemView.setOnClickListener{
-            context.startActivity<ChatActivity>("username" to userName)
+            context!!.startActivity<ChatActivity>("username" to userName)
         }
 
         contactListItemView.setOnLongClickListener {
@@ -50,7 +50,6 @@ class ContactListAdapter(val context: Context, val contactListItems: MutableList
     private fun deleteFriend(userName: String) {
         EMClient.getInstance().contactManager().aysncDeleteContact(userName,object : EMCallBackAdapter(){
             override fun onSuccess() {
-
                 context.runOnUiThread { toast(R.string.delete_friend_success) }
 
             }
