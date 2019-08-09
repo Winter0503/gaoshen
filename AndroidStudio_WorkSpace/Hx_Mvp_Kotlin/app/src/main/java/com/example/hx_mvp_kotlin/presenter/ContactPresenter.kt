@@ -16,6 +16,7 @@ class ContactPresenter(val view : ContactContract.view) : ContactContract.presen
 
     val contactListItems = mutableListOf<ContactListItem >()
     override fun loadContact() {
+
         doAsync {
             //清空集合
             contactListItems.clear()
@@ -27,6 +28,7 @@ class ContactPresenter(val view : ContactContract.view) : ContactContract.presen
                     val showFirstLetter= index == 0 || s[0] !=usernames[index-1][0]
                     val contactListItem=ContactListItem(s,s[0].toUpperCase(),showFirstLetter)
                     contactListItems.add(contactListItem)
+
                 }
                 uiThread { view.onLoadContactsSuccess() }
             }catch (e: HyphenateException){

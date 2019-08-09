@@ -31,7 +31,7 @@ class ContactListAdapter(val context: Context, val contactListItems: MutableList
         contactListItemView.bindView(contactListItems[p1])
         val userName = contactListItems[p1].userName
         contactListItemView.setOnClickListener{
-            context!!.startActivity<ChatActivity>("username" to userName)
+            context.startActivity<ChatActivity>("username" to userName)
         }
 
         contactListItemView.setOnLongClickListener {

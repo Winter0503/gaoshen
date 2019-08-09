@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <include layout="@layout/header"/>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,13 +21,11 @@
                 android:layout_height="match_parent">
             </android.support.v7.widget.RecyclerView>
         </android.support.v4.widget.SwipeRefreshLayout>
-
         <com.example.hx_mvp_kotlin.widght.SlideBar
             android:id="@+id/slideBar"
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"/>
-
         <TextView
             android:id="@+id/section"
             android:layout_width="wrap_content"
@@ -40,7 +37,6 @@
             android:padding="8dp"
             android:background="@drawable/ease_show_head_toast_bg"
             android:visibility="gone"/>
-
     </FrameLayout>
 </LinearLayout>
 
