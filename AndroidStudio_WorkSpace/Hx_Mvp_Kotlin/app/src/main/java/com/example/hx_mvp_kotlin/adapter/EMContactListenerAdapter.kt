@@ -7,7 +7,8 @@ import com.hyphenate.EMContactListener
  * Blog : https://mp.csdn.net/
  * escription :
  */
-open class EMContactListenerAdapter : EMContactListener {
+open class  EMContactListenerAdapter : EMContactListener {
+
     override fun onContactInvited(p0: String?, p1: String?) {
 
     }

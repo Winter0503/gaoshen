@@ -6,7 +6,6 @@ import com.example.hx_mvp_kotlin.adapter.AddFriendListAdapter
 import com.example.hx_mvp_kotlin.contract.AddFriendContract
 import com.example.hx_mvp_kotlin.presenter.AddFriendPresenter
 import kotlinx.android.synthetic.main.activity_add_friend.*
-import kotlinx.android.synthetic.main.activity_chat.recyclerView
 import kotlinx.android.synthetic.main.header.*
 import org.jetbrains.anko.toast
 

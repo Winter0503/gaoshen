@@ -25,40 +25,37 @@ class ContactFragment: BaseFragment(),ContactContract.view{
     override fun getlayoutResId(): Int = R.layout.fragment_contacts
 
     val presenter = ContactPresenter(this)
+    val contactListener =object :EMContactListenerAdapter() {
+        override fun onFriendRequestDeclined(p0: String?) {
+            presenter.loadContact()
+        }
+        override fun onContactDeleted(p0: String?) {
+            presenter.loadContact()
+        }
+        override fun onContactAdded(p0: String?) {
+            presenter.loadContact()
+        }
+
+        override fun onContactInvited(p0: String?, p1: String?) {
+            presenter.loadContact()
+        }
+
+        override fun onFriendRequestAccepted(p0: String?) {
+            presenter.loadContact()
+        }
+    }
+
     override fun init() {
         super.init()
-        headerTitle.text=getString(R.string.contact)
-        add.visibility= View.VISIBLE
-        add.setOnClickListener{
-            context!!.startActivity<AddFriendActivity>()
-        }
-        swipeRefreshLayout.apply {
-            setColorSchemeResources(R.color.qq_blue)
-            isRefreshing=true
-            setOnRefreshListener { presenter.loadContact() }
-        }
+        initHeader()
+        initswipeRefreshLayout()
+        initRecyclerView()
+        EMClient.getInstance().contactManager().setContactListener(contactListener)
+        initSlideBar()
+        presenter.loadContact()
+    }
 
-        recyclerView.apply{
-            setHasFixedSize(true)
-            layoutManager=LinearLayoutManager(context)
-            adapter= ContactListAdapter(context,presenter.contactListItems)
-        }
-
-        EMClient.getInstance().contactManager().setContactListener(object : EMContactListenerAdapter() {
-            override fun onFriendRequestDeclined(p0: String?) {
-                super.onFriendRequestDeclined(p0)
-                presenter.loadContact()
-            }
-            override fun onContactDeleted(p0: String?) {
-                super.onContactDeleted(p0)
-                presenter.loadContact()
-            }
-            override fun onContactAdded(p0: String?) {
-                super.onContactAdded(p0)
-                presenter.loadContact()
-            }
-        })
-
+    private fun initSlideBar() {
         slideBar.onSectionChange = object : SlideBar.OnSectionChangeListener{
             override fun onSectionChange(firstLetter: String) {
                 section.visibility=View.VISIBLE
@@ -70,8 +67,28 @@ class ContactFragment: BaseFragment(),ContactContract.view{
                 section.visibility=View.GONE
             }
         }
+    }
 
-        presenter.loadContact()
+    private fun initRecyclerView() {
+        recyclerView.apply{
+            setHasFixedSize(true)
+            layoutManager=LinearLayoutManager(context)
+            adapter= ContactListAdapter(context,presenter.contactListItems)
+        }
+    }
+
+    private fun initswipeRefreshLayout() {
+        swipeRefreshLayout.apply {
+            setColorSchemeResources(R.color.qq_blue)
+            isRefreshing=true
+            setOnRefreshListener { presenter.loadContact() }
+        }
+    }
+
+    private fun initHeader() {
+        headerTitle.text=getString(R.string.contact)
+        add.visibility= View.VISIBLE
+        add.setOnClickListener{context!!.startActivity<AddFriendActivity>() }
     }
 
     private fun getPosition(firstLetter: String): Int=
@@ -90,7 +107,8 @@ class ContactFragment: BaseFragment(),ContactContract.view{
         context!!.toast(R.string.load_contacts_failed)
     }
 
-
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        EMClient.getInstance().contactManager().removeContactListener(contactListener)
+    }
 }
