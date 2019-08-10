@@ -20,9 +20,9 @@ class ChatPresenter(val view:ChatContract.View) : ChatContract.Presenter{
 
     val messages = mutableListOf<EMMessage>()
 
-    override fun sendMessage(contaxt: String, message: String) {
-        val message = EMMessage.createTxtSendMessage(message,contaxt)
-        message.setMessageStatusCallback(object:EMCallBackAdapter(){
+    override fun sendMessage(contaxt: String?, message: String?) {
+        var message = EMMessage.createTxtSendMessage(message!!,contaxt!!)
+        message!!.setMessageStatusCallback(object:EMCallBackAdapter(){
             override fun onError(p0: Int, p1: String?) {
                uiThread { view.onSendMessageFailed() }
             }
@@ -51,6 +51,9 @@ class ChatPresenter(val view:ChatContract.View) : ChatContract.Presenter{
     override fun loadMessage(username: String) {
         doAsync {
             val conversation =EMClient.getInstance().chatManager().getConversation(username)
+
+            conversation.markAllMessagesAsRead()
+
             messages.addAll(conversation.allMessages)
             uiThread { view.onMessageLoaded() }
         }

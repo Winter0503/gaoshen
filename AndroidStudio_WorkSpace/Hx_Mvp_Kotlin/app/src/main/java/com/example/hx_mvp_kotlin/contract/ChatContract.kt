@@ -10,7 +10,7 @@ import com.hyphenate.chat.EMMessage
 interface ChatContract {
 
     interface Presenter :BasePresenter{
-        fun sendMessage(contaxt: String,message:String)
+        fun sendMessage(contaxt: String?,message:String?)
         fun addMessage(username: String, p0: MutableList<EMMessage>?)
         fun loadMessage(username: String)
         abstract fun loadMoreMessages(username: String)
